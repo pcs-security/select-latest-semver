@@ -4,24 +4,24 @@ This action prints the latest SemVer string discovered from an array of version 
 
 ## Inputs
 
-## `list`
+### `list`
 
 **Required** The list of SemVer values to greet. Formatted as a JSON string. 
 Defaults to `[]`.
 
-## `fail-on-empty`
+### `fail-on-empty`
 
 **Optional** If `'false'`, `latest` will be an empty string when the action encounters an array of values such that no valid result can be selected. Otherwise, the action will instead fail with an error.
 Defaults to **true**.
 
-## `strict-parsing`
+### `strict-parsing`
 
 **Optional** Indicates if the action should interprete version strings strictly. If `true`, only SemVer strings that is fully compliant with the semantic version standard will be processed. Otherwise, not fully-compliant values such as `1.0` will also be accepted and interpreted as `1.0.0`.
 Defaults to **true**.
 
 The `strict-parsing` flag is used to control the `loose` mode on `npm/semver` parsing routines.
 
-## `strict-output`
+### `strict-output`
 
 **Optional** Indicates if the value returned by `latest` will be the original input value or converted to a strictly compliant format.
 This flag is only useful when `strict-parsing` is disabled.
@@ -31,7 +31,7 @@ Defaults to **true**.
 
 ## Outputs
 
-## `latest`
+### `latest`
 
 The element in `list` with the latest valid SemVer version.
 
