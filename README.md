@@ -9,7 +9,7 @@ This action prints the latest SemVer string discovered from an array of version 
 **Required** The list of SemVer values to greet. Formatted as a JSON string. 
 Defaults to `[]`.
 
-## `list`
+## `fail-on-empty`
 
 **Optional** If `'false'`, `latest` will be an empty string when the action encounters an array of values such that no valid result can be selected. Otherwise, the action will instead fail with an error.
 Defaults to **true**.
