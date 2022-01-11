@@ -1,0 +1,26 @@
+{
+  "name": "select-latest-semver",
+  "version": "1.0.0",
+  "description": "This action prints the latest SemVer string discovered from an array of version strings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcs-security/select-latest-semver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pcs-security/select-latest-semver/issues"
+  },
+  "homepage": "https://github.com/pcs-security/select-latest-semver#readme"
+}
