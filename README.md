@@ -14,6 +14,21 @@ Defaults to `[]`.
 **Optional** If `'false'`, `latest` will be an empty string when the action encounters an array of values such that no valid result can be selected. Otherwise, the action will instead fail with an error.
 Defaults to **true**.
 
+## `strict-parsing`
+
+**Optional** Indicates if the action should interprete version strings strictly. If `true`, only SemVer strings that is fully compliant with the semantic version standard will be processed. Otherwise, not fully-compliant values such as `1.0` will also be accepted and interpreted as `1.0.0`.
+Defaults to **true**.
+
+The `strict-parsing` flag is used to control the `loose` mode on `npm/semver` parsing routines.
+
+## `strict-output`
+
+**Optional** Indicates if the value returned by `latest` will be the original input value or converted to a strictly compliant format.
+This flag is only useful when `strict-parsing` is disabled.
+For example, if `strict-parsing` is enabled, if the latest version selected is the input value `1.0`, the value of `latest` is `1.0.0` when `strict-output` is `'true'`. If `strict-output` is `'false'`, the original input `1.0` is preserved as the value of `latest`.
+Defaults to **true**.
+
+
 ## Outputs
 
 ## `latest`
