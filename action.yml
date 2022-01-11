@@ -12,6 +12,10 @@ inputs:
     description: Indicates if the action should fail if no valid SemVer versions can be selected. If set to false, the value latest will be an empty string when no valid SemVer values can be selected.
     required: false
     default: 'true'
+  coercion:
+    description: Indicates if the semantic version coercion should be performed on the input values, this allows non-standard values such as `1` and `1.0` to be accepted as `1.0.0`.
+    required: false
+    default: 'false'
   strict-parsing:
     description: Indicates if the action should interprete version strings strictly.
     required: false
