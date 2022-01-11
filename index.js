@@ -19,7 +19,7 @@ try
 
   console.log('Found %d valid SemVer values', semverMap.size);
 
-  let semverList = Array.from(semverMap.keys());
+  let semverList = Array.from(semverMap.keys()).sort(semver.rcompare);
 
   if (semverList.length > 0)
   {
