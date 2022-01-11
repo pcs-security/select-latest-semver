@@ -11523,7 +11523,7 @@ try
 
   console.log('Found %d valid SemVer values', semverMap.size);
 
-  let semverList = Array.from(semverMap.keys()).sort(semver.rcompare);
+  let semverList = Array.from(semverMap.keys());
 
   if (semverList.length > 0)
   {
