@@ -11521,7 +11521,7 @@ try
   console.log('Processing %d elements from list', versionList.length);
   
   versionList.forEach(version => {
-    let sv = semver.parse(version, { loose: !isStrictParsing});
+    let sv = semver.parse(isStrictParsing ? version : semver.coerce(version));
     if (sv != null) semverMap.set(sv, version);
   });
 
