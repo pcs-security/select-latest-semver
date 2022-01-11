@@ -2,7 +2,7 @@ name: Select Latest Semver
 description: Consumes a JSON array of SemVer strings, and returns the version that is the latest. Strings with invalid SemVer versions are ignored.
 runs:
   using: node16
-  main: index.js
+  main: dist/index.js
 inputs:
   list:
     description: Array of SemVer strings to process
