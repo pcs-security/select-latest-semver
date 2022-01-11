@@ -5,15 +5,19 @@ const semver = require('semver');;
 try 
 {
   const versionList = JSON.parse(core.getInput('list'));
-  const isStrictParsing = JSON.parse(core.getInput('strict-parsing').toLowerCase());
-  const isStrictOutput = JSON.parse(core.getInput('strict-output').toLowerCase());
+  const isStrictParsing = core.getBooleanInput('strict-parsing');
+  const isStrictOutput = core.getBooleanInput('strict-output');
+  const isFailOnEmpty = core.getBooleanInput('fail-on-empty');
 
   let semverMap = new Map();
 
+  console.log('Strict parsing is %s.', isStrictParsing ? 'on' : 'off');
+  console.log('Strict output is %s.', isStrictOutput ? 'on' : 'off');
+  console.log('When no valid elements are found, this action will %s.', isFailOnEmpty ? 'fail' : 'return an empty string');
   console.log('Processing %d elements from list', versionList.length);
   
   versionList.forEach(version => {
-    let sv = semver.parse(version, !isStrictParsing);
+    let sv = semver.parse(version, { loose: !isStrictParsing});
     if (sv != null) semverMap.set(sv, version);
   });
 
@@ -28,7 +32,7 @@ try
     
     core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap.get(latest));
   }
-  else if (Boolean(core.getInput('fail-on-empty')))
+  else if (Boolean())
   {
     core.setFailed("No valid SemVer values can be selected from the list.");
   }
