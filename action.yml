@@ -12,6 +12,14 @@ inputs:
     description: Indicates if the action should fail if no valid SemVer versions can be selected. If set to false, the value latest will be an empty string when no valid SemVer values can be selected.
     required: false
     default: 'true'
+  strict-mode:
+    description: Indicates if the action should interprete version strings strictly.
+    required: false
+    default: 'true'
+  preserve-inputs:
+    description: Indicates if the value returned by latest will be the original input value or converted to strictly compliant SemVer format. This flag is only observed when strict-mode is disabled.
+    required: false
+    default: 'true'
 outputs:
   latest:
     description: The latest SemVer version found in 'list'.

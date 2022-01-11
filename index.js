@@ -5,13 +5,22 @@ const semver = require('semver');;
 try 
 {
   const versionList = JSON.parse(core.getInput('list'));
-  let semverList = versionList.map(version => semver.parse(version))
-                              .filter(version => Boolean(version))
-                              .sort(semver.rcompare);
+  const isStrictMode = JSON.parse(core.getInput('strict-mode').toLowerCase());
+  const preserveInputs = JSON.parse(core.getInput('preserve-input').toLowerCase());
+
+  let semverMap = new Map();
+  
+  versionList.forEach(version => {
+    let sv = semver.parse(version, !isStrictMode);
+    if (sv != null) semverMap.set(sv, version);
+  });
+
+  let semverList = Array.from(semverMap.keys).sort(semver.rcompare);                              
 
   if (semverList.length > 0)
   {
-    core.setOutput("latest", semverList[0].toString());
+    let latest = semverList[0];
+    core.setOutput("latest", preserveInputs ? semverMap[latest] : latest.toString());
   }
   else if (Boolean(core.getInput('fail-on-empty')))
   {
