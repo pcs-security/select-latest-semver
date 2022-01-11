@@ -11528,9 +11528,9 @@ try
   if (semverList.length > 0)
   {
     let latest = semverList[0];
-    console.log('Selected value %s (Original: %s)', latest, semverMap[latest]);
+    console.log('Selected value %s (Original: %s)', latest, semverMap.get(latest));
     
-    core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap[latest]);
+    core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap.get(latest));
   }
   else if (Boolean(core.getInput('fail-on-empty')))
   {
