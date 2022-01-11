@@ -11509,13 +11509,13 @@ const semver = __nccwpck_require__(7707);;
 try 
 {
   const versionList = JSON.parse(core.getInput('list'));
-  const isStrictMode = JSON.parse(core.getInput('strict-mode').toLowerCase());
-  const preserveInputs = JSON.parse(core.getInput('preserve-input').toLowerCase());
+  const isStrictParsing = JSON.parse(core.getInput('strict-parsing').toLowerCase());
+  const isStrictOutput = JSON.parse(core.getInput('strict-output').toLowerCase());
 
   let semverMap = new Map();
   
   versionList.forEach(version => {
-    let sv = semver.parse(version, !isStrictMode);
+    let sv = semver.parse(version, !isStrictParsing);
     if (sv != null) semverMap.set(sv, version);
   });
 
@@ -11524,7 +11524,7 @@ try
   if (semverList.length > 0)
   {
     let latest = semverList[0];
-    core.setOutput("latest", preserveInputs ? semverMap[latest] : latest.toString());
+    core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap[latest]);
   }
   else if (Boolean(core.getInput('fail-on-empty')))
   {
