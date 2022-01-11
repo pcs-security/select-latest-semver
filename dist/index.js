@@ -11509,19 +11509,23 @@ const semver = __nccwpck_require__(7707);;
 try 
 {
   const versionList = JSON.parse(core.getInput('list'));
+  const doCoercion = core.getBooleanInput('coercion');
   const isStrictParsing = core.getBooleanInput('strict-parsing');
   const isStrictOutput = core.getBooleanInput('strict-output');
   const isFailOnEmpty = core.getBooleanInput('fail-on-empty');
 
   let semverMap = new Map();
 
+  console.log('String coercion is %s.', doCoercion ? 'on' : 'off');
   console.log('Strict parsing is %s.', isStrictParsing ? 'on' : 'off');
   console.log('Strict output is %s.', isStrictOutput ? 'on' : 'off');
   console.log('When no valid elements are found, this action will %s.', isFailOnEmpty ? 'fail' : 'return an empty string');
   console.log('Processing %d elements from list', versionList.length);
   
+  const semverOpts = { loose: !isStrictParsing };
+
   versionList.forEach(version => {
-    let sv = semver.parse(isStrictParsing ? version : semver.coerce(version));
+    let sv = semver.parse(doCoercion ? semver.coerce(version, semverOpts) : version, semverOpts);
     if (sv != null) semverMap.set(sv, version);
   });
 
