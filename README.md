@@ -16,9 +16,9 @@ Defaults to `[]`.
 
 Defaults to **true**.
 
-### `semvish-clean`
+### `semvish-cleaning`
 
-**Optional** Indicates if the the string cleaning function from the `megawac/semvish` package should be performed on the input values. 
+**Optional** Indicates if the the clean() function from the `megawac/semvish` package should be performed on the input values. 
 If `'true'`, cleaning input values will allow non-standard strings such as `1` and `1.0` to be regarded as `1.0.0`. Otherwise, not-quite-compliant strings will be ignored by the `semver` package, as intended.
 
 Defaults to **false**.
