@@ -12,9 +12,9 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "semvish": "^1.1.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pcs-security/select-latest-semver.git"

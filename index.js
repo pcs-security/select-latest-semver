@@ -1,18 +1,19 @@
 const core   = require('@actions/core');
 const github = require('@actions/github');
 const semver = require('semver');
+const semvish = require('semvish');
 
 try 
 {
   const versionList = JSON.parse(core.getInput('list'));
-  const doCoercion = core.getBooleanInput('coercion');
+  const doSemvishClean = core.getBooleanInput('semvish-clean')
   const isStrictParsing = core.getBooleanInput('strict-parsing');
   const isStrictOutput = core.getBooleanInput('strict-output');
   const isFailOnEmpty = core.getBooleanInput('fail-on-empty');
 
   let semverMap = new Map();
 
-  console.log('String coercion is %s.', doCoercion ? 'on' : 'off');
+  console.log('String cleaning with the semvish library is %s.', doSemvishClean ? 'on' : 'off');
   console.log('Strict parsing is %s.', isStrictParsing ? 'on' : 'off');
   console.log('Strict output is %s.', isStrictOutput ? 'on' : 'off');
   console.log('When no valid elements are found, this action will %s.', isFailOnEmpty ? 'fail' : 'return an empty string');
@@ -21,7 +22,7 @@ try
   const semverOpts = { loose: !isStrictParsing };
 
   versionList.forEach(version => {
-    let sv = semver.parse(doCoercion ? semver.coerce(version, semverOpts) : version, semverOpts);
+    let sv = semver.parse(doSemvishClean ? semvish.clean(version, semverOpts) : version, semverOpts);
     if (sv != null) semverMap.set(sv, version);
   });
 
