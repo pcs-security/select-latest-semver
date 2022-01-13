@@ -25,6 +25,12 @@ Defaults to **false**.
 
 More details on behavior can be found [on the official semvish docs page](https://www.npmjs.com/package/semvish).
 
+### `ignore-prereleases`
+
+**Optional** Indicates if the action should ignore prerelease versions when selecting the latest SemVer. If `'true'`, versions with prerelease suffixes such as `-beta.1` will be ignored when deciding the latest version.
+
+Defaults to **false**.
+
 ### `strict-parsing`
 
 **Optional** Indicates if the action should interprete version strings strictly. 

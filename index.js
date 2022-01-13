@@ -7,6 +7,7 @@ try
 {
   const versionList = JSON.parse(core.getInput('list'));
   const doSemvishCleaning = core.getBooleanInput('semvish-cleaning')
+  const doIgnorePrereleases = core.getBooleanInput('ignore-prereleases')
   const isStrictParsing = core.getBooleanInput('strict-parsing');
   const isStrictOutput = core.getBooleanInput('strict-output');
   const isFailOnEmpty = core.getBooleanInput('fail-on-empty');
@@ -14,6 +15,7 @@ try
   let semverMap = new Map();
 
   console.log('String cleaning with the semvish library is %s.', doSemvishCleaning ? 'on' : 'off');
+  console.log('Prerelease versions will be %s.', doIgnorePrereleases ? 'ignored' : 'included');
   console.log('Strict parsing is %s.', isStrictParsing ? 'on' : 'off');
   console.log('Strict output is %s.', isStrictOutput ? 'on' : 'off');
   console.log('When no valid elements are found, this action will %s.', isFailOnEmpty ? 'fail' : 'return an empty string');
@@ -22,8 +24,13 @@ try
   const semverOpts = { loose: !isStrictParsing };
 
   versionList.forEach(version => {
-    let sv = semver.parse(doSemvishCleaning ? semvish.clean(version, semverOpts) : version, semverOpts);
-    if (sv != null) semverMap.set(sv, version);
+    let sv = semver.parse(doSemvishCleaning ? semvish.clean(version, semverOpts) 
+                                            : version, semverOpts);
+
+    if (sv == null) return;
+    if (doIgnorePrereleases && semver.prerelease(sv) != null) return;
+    
+    semverMap.set(sv, version);
   });
 
   console.log('Found %d valid SemVer values', semverMap.size);
