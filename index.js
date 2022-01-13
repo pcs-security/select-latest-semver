@@ -44,7 +44,7 @@ try
     
     core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap.get(latest));
   }
-  else if (Boolean(isFailOnEmpty))
+  else if (isFailOnEmpty)
   {
     core.setFailed("No valid SemVer values can be selected from the list.");
   }

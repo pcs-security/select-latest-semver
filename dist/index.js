@@ -14500,7 +14500,7 @@ try
     
     core.setOutput("latest", isStrictOutput ? latest.toString() : semverMap.get(latest));
   }
-  else if (Boolean())
+  else if (isFailOnEmpty)
   {
     core.setFailed("No valid SemVer values can be selected from the list.");
   }
