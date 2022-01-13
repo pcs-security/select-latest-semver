@@ -13,7 +13,7 @@ inputs:
     required: false
     default: 'true'
   semvish-cleaning:
-    description: Indicates if the the string cleaning function from the megawac/semvish package should be performed on the input values. This allows non-standard values such as '1' and '1.0' to be regarded as '1.0.0'.
+    description: Indicates if the string cleaning function from the megawac/semvish package should be performed on the input values. This allows non-standard values such as '1' and '1.0' to be regarded as '1.0.0'.
     required: false
     default: 'false'
   strict-parsing:
